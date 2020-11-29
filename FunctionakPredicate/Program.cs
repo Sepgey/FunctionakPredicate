@@ -48,20 +48,19 @@ namespace FunctionakPredicate
 
         private static void Task3()
         {
-            var _string = Console.ReadLine();
+            string input = Console.ReadLine();
+            Func<string, int> parser = n => int.Parse(n);
+            int[] nums = input.Split(new string[] { " " },
+                StringSplitOptions.RemoveEmptyEntries).Select(parser).ToArray();
 
-            Func<int[], int> summator = ints =>
+            int min = Int32.MaxValue;
+
+            for(int i = 0; i < nums.Length; i++)
             {
-                int sum = 0;
-                for (var i = 0; i < ints.Length; i++)
-                {
-                    sum += ints[i];
-                }
-
-                return sum;
-            };
-
-            Console.WriteLine(summator(lineParser(_string.Split(' '))));
+                if (nums[i] < min)
+                    min = nums[i];
+            }
+            Console.WriteLine(min);
         }
 
         private static void Task4()
